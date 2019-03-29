@@ -1,0 +1,22 @@
+package com.learning.hibernate;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import com.learning.hibernatedemo.entity.Student;
+
+public class CreateStudent {
+
+	public static void main(String[] args) {
+		
+		SessionFactory factory = new Configuration()
+									.configure("hibernate.cfg.xml")
+									.addAnnotatedClass(Student.class)
+									.buildSessionFactory();
+		
+		Session session = factory.getCurrentSession();
+		
+	}
+
+}

@@ -1,0 +1,8 @@
+package com.springdemo.mvc.validation;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+public class LastNameConstraintValidator implements ConstraintValidator<LastName, String>{
+
+}

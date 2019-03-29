@@ -1,0 +1,16 @@
+package testing;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class lengthTest {
+
+	@Test
+	void test() {
+		jUnitTest test = new jUnitTest();
+		int output = test.length("Junaid");
+		assertEquals(7, output);
+	}
+
+}

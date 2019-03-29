@@ -1,0 +1,32 @@
+package com.springdemo.mvc;
+
+import javax.validation.Valid;
+import org.springframework.validation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+/*import org.springframework.web.bind.annotation.RequestParam;*/
+
+@Controller
+@RequestMapping("/student")
+public class StudentController {
+	
+	@RequestMapping("/form")
+	public String showForm(Model model) {
+
+		model.addAttribute("student",new Student());
+		return "student-form";
+	}
+	
+	@RequestMapping("/details")
+	public String showDetails(
+			@Valid @ModelAttribute("student") Student student,
+			BindingResult validationCheck) {
+		
+		if(validationCheck.hasErrors())
+			return "student-form";
+		else
+			return "student-details";
+	}
+}

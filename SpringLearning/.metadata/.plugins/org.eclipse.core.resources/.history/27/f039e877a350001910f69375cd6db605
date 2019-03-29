@@ -1,0 +1,5 @@
+package com.learning.hibernatedemo.entity;
+
+public class Course {
+
+}

@@ -1,0 +1,37 @@
+package com.learning.hibernate;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import com.learning.hibernatedemo.entity.Instructor;
+import com.learning.hibernatedemo.entity.InstructorDetails;
+import com.learning.hibernatedemo.entity.Student;
+
+public class CreateInstructorDemo {
+
+	public static void main(String[] args) {
+		
+		SessionFactory factory = new Configuration()
+									.configure("hibernate.cfg.xml")
+									.addAnnotatedClass(Instructor.class)
+									.addAnnotatedClass(InstructorDetails.class)
+									.buildSessionFactory();
+		
+		Session session = factory.getCurrentSession();
+		
+		try {
+			//Use the session object to do DB operations
+			Student newStudent = new Student("Adarsh","Bhuyan","adarsh_monu@ace.com");
+			session.beginTransaction();
+			//Save to DB
+			session.save(newStudent);
+			//After any DB query
+			session.getTransaction().commit();
+		}
+		finally {
+			factory.close();
+		}
+	}
+
+}

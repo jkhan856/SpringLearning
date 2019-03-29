@@ -1,0 +1,32 @@
+package com.learning.hibernate;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import com.learning.hibernatedemo.entity.Student;
+
+public class GetStudentByQuery {
+
+	public static void main(String[] args) {
+		
+		SessionFactory factory = new Configuration()
+									.configure("hibernate.cfg.xml")
+									.addAnnotatedClass(Student.class)
+									.buildSessionFactory();
+		
+		Session session = factory.getCurrentSession();
+		
+		try {
+			
+			session.beginTransaction();
+			StudentList<Student> = session.createQuery("from Student s where s.email like '%gmail.com'").getResultList();
+			System.out.println(theStudent.toString());
+			session.getTransaction().commit();
+		}
+		finally {
+			factory.close();
+		}
+	}
+
+}

@@ -1,0 +1,34 @@
+package com.learning.hibernate;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import com.learning.hibernatedemo.entity.Student;
+
+public class CreateStudent {
+
+	public static void main(String[] args) {
+		
+		SessionFactory factory = new Configuration()
+									.configure("hibernate.cfg.xml")
+									.addAnnotatedClass(Student.class)
+									.buildSessionFactory();
+		
+		Session session = factory.getCurrentSession();
+		
+		try {
+			//Use the session object to do DB operations
+			Student newStudent = new Student("Mihir","Das","dasmihir15@gmail.com");
+			session.beginTransaction();
+			//Save to DB
+			session.save(newStudent);
+			//After any DB query
+			session.getTransaction().commit();
+		}
+		finally {
+			factory.close();
+		}
+	}
+
+}
